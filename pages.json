@@ -1,0 +1,61 @@
+{
+	"easycom": {
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		}
+        ,{
+            "path" : "pages/school/school",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "院校简介",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#fff"
+		// "navigationBarTextStyle": "white",
+		// "navigationBarTitleText": "uni-app",
+		// "navigationBarBackgroundColor": "#f75b35",
+		// "backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#a63d9d",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/tabbar/zhihuixiaoyuan.png",
+				"selectedIconPath": "static/tabbar/zhihuixiaoyuan_select.png"
+			},
+			{
+				"pagePath": "pages/my/my",
+				"text": "个人中心",
+				"iconPath": "static/tabbar/wode.png",
+				"selectedIconPath": "static/tabbar/wode_select.png"
+			}
+		]
+	}
+}
