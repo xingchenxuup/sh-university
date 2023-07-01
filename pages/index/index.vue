@@ -31,9 +31,13 @@
 					<text>996/007</text>
 				</view>
 				<!-- 公告 -->
-				<uni-notice-bar class="school-notice" showClose="true" :speed='50' scrollable="true" show-get-more show-icon
-					text="2023年6月30日山河大学（虚拟院校）正式成立" @click="clickNotice" />
+				<view class="school-notice">
+					<view>
+						<uni-notice-bar showClose="true" :speed='50' scrollable="true" show-get-more show-icon
+							text="2023年6月30日山河大学（虚拟院校）正式成立" @click="clickNotice" />
+					</view>
 
+				</view>
 				<!-- 菜单九宫格 -->
 				<view class="school-menu">
 					<view v-for="(item, index) in school_menu" :key="index" class="menu-item"
@@ -280,10 +284,18 @@ swiper-item {
 }
 
 .school-notice {
-	width: 95%;
+	width: 96%;
 	margin: 20upx auto;
-	border-radius: 30upx;
+	border-radius: 60upx;
+	background-color: #fff9ea;
 }
+/* 兼容小程序。。。。。。 */
+.school-notice >view{
+	width: 94%;
+	margin: 0 auto;
+	border-radius: 50upx;
+}
+
 
 .school-desc {
 	width: 100%;
