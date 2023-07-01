@@ -30,6 +30,10 @@
 					<text>双一流建设高校</text>
 					<text>996/007</text>
 				</view>
+				<!-- 公告 -->
+				<uni-notice-bar class="school-notice" showClose="true" :speed='50' scrollable="true" show-get-more show-icon
+					text="2023年6月30日山河大学（虚拟院校）正式成立" @click="clickNotice" />
+
 				<!-- 菜单九宫格 -->
 				<view class="school-menu">
 					<view v-for="(item, index) in school_menu" :key="index" class="menu-item"
@@ -186,10 +190,22 @@ export default {
 		},
 		navigatePage(page) {
 			if (page == null) {
+				uni.showToast({
+					title: '功能还未实现',
+					icon: 'none',
+					duration: 2000
+				})
 				return
 			}
 			uni.navigateTo({
 				url: page
+			})
+		},
+		clickNotice() {
+			uni.showToast({
+				title: '暂无通知',
+				icon: 'none',
+				duration: 2000
 			})
 		}
 	}
@@ -260,6 +276,12 @@ swiper-item {
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: #f3f3f6;
+	border-radius: 30upx;
+}
+
+.school-notice {
+	width: 95%;
+	margin: 20upx auto;
 	border-radius: 30upx;
 }
 
@@ -385,4 +407,5 @@ swiper-item {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
 	overflow: hidden;
-}</style>
+}
+</style>

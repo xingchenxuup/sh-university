@@ -130,4 +130,5 @@ dist
 .pnp.*
 
 .hbuilderx/
+uni_modules/
 
