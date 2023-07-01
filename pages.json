@@ -29,6 +29,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/school-ability/school-ability",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "走进校园",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -48,8 +57,14 @@
 			{
 				"pagePath": "pages/index/index",
 				"text": "首页",
-				"iconPath": "static/tabbar/zhihuixiaoyuan.png",
-				"selectedIconPath": "static/tabbar/zhihuixiaoyuan_select.png"
+				"iconPath": "static/tabbar/xuexiao.png",
+				"selectedIconPath": "static/tabbar/xuexiao-select.png"
+			},
+			{
+				"pagePath": "pages/school-ability/school-ability",
+				"text": "走进校园",
+				"iconPath": "static/tabbar/jianbuzou.png",
+				"selectedIconPath": "static/tabbar/jianbuzou-select.png"
 			},
 			{
 				"pagePath": "pages/my/my",

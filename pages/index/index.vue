@@ -1,9 +1,6 @@
 <template>
 	<view>
-		<view class="index-top">
-
-		</view>
-		<view class="index-bottom" :style="'height:' + bottom_height + 'px;'">
+		<view>
 			<scroll-view scroll-y="true">
 				<!-- 轮播图 -->
 				<view class="swiper-container">
@@ -96,7 +93,6 @@
 export default {
 	data() {
 		return {
-			bottom_height: '0',
 			swiper_items: [
 				{
 					img_url: "http://www.whut.edu.cn/xywh/lgfw/202204/W020220408619634056357.jpg"
@@ -177,16 +173,8 @@ export default {
 			current: 1
 		}
 	},
-	onLoad() {
-		uni.getSystemInfo({
-			success: (res) => {
-				// this.bottom_height = res.windowHeight - uni.upx2px(60)
-				this.bottom_height = res.windowHeight
-				// console.log(res.windowHeight)
-			}
-		})
-
-
+	mounted() {
+		
 	},
 	methods: {
 		sectionChange(index) {
@@ -217,9 +205,6 @@ export default {
 </script>
 
 <style scoped>
-.index-bottom {
-	/* background-color: gray; */
-}
 
 scroll-view {
 	height: 100%;
