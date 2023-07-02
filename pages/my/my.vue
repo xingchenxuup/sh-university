@@ -1,123 +1,256 @@
 <template>
 	<view>
-		<text style="color: red;font-weight: bold;">没有美术细胞，没有想法，大家有没有好看的页面推荐一下</text>
-		<!-- 用户信息卡片 -->
-		<view class="login-card">
-			<view class="login-info">
-				<view class="avatar-content">
-					<image class="avatar" mode="aspectFit" src="@/static/avatar.jpg" @error="imageError"></image>
+		<view class="user-card">
+			<image class="user-avatar" mode="aspectFit" :src="userInfo.avatar" @error="imageError"></image>
+			<view>
+				<view v-if="isLogin" class="user-info">
+					<view class="user-name">{{ userInfo.username }}</view>
+					<view class="user-level">{{ userInfo.userNumber }}</view>
 				</view>
-				<view v-if="!isLogin" class="login-tip">
-					<text>登录 <text style="font-weight: normal;">&nbsp;/&nbsp;</text> 注册</text>
-				</view>
-				<view v-if="isLogin" class="user-name">
-					<text>用户名</text>
-				</view>
-			</view>
-			<view class="user-info">
-				<view class="user-info-item">
-					<text>0</text>
-					<text>xxx</text>
-				</view>
-				<view class="user-info-item">
-					<text>0</text>
-					<text>xxx</text>
-				</view>
-				<view class="user-info-item">
-					<text>0</text>
-					<text>xxx</text>
+				<view v-if="!isLogin" class="user-login" @click="login()">
+					<view>登录/注册</view>
 				</view>
 			</view>
 		</view>
+		<view class="user-menu">
+			<view class="menu-item" v-for="(item, index) in userMenu" :key="index">
+				<view>
+					<text :class="'iconfont ' + item.iconfont"></text>
+					<text>{{ item.info }}</text>
+				</view>
+				<view>
+					<text class="iconfont icon-bangzhujinru"></text>
+				</view>
+			</view>
+		</view>
+		<text class="ridicule">登录api天天变，获取用户信息api天天出问题，你们官方的开发团队怎么搞的</text>
+		<button v-if="isLogin" class="login-out" @click="loginOut">退出登录</button>
+
+		<u-popup :show="show" @close="close" :closeOnClickOverlay="show" :closeable="true">
+			<view class="popup-notice">
+				设置头像和昵称
+			</view>
+			<view class="get-avatar">
+				<view class="avatar-notice">获取头像</view>
+				<button open-type="chooseAvatar" @chooseavatar='onChooseAvatar' >
+					<!-- <button open-type="chooseAvatar" @chooseavatar='onChooseAvatar'> -->
+				<image :src="userInfo.avatar" mode=""></image>
+				</button>
+			</view>
+			<view class="get-name">
+				<view class="name-notice">设置昵称</view>
+				<input @blur="blurname" type="nickname" v-model="userInfo.username" placeholder="请输入昵称">
+			</view>
+			<button class="mini-btn" type="primary" @click="submitInfo" >提交</button>
+		</u-popup>
 	</view>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				isLogin: false
-			}
+export default {
+	data() {
+		return {
+			isLogin: false,
+			show: false,
+			userInfo: {
+				username: '微信用户',
+				userNumber: '00000001',
+				avatar: '../../static/avatar.jpg'
+			},
+			userMenu: [
+				{
+					iconfont: 'icon-shouji',
+					info: '绑定手机',
+					page: 'bindPhone',
+					color: '#f5a623'
+				},
+				{
+					iconfont: 'icon-fankui',
+					info: '意见反馈',
+					page: 'feedback',
+					color: '#f5a623'
+				},
+				{
+					iconfont: 'icon-wode1',
+					info: '关于我们',
+					page: 'aboutUs',
+					color: '#f5a623'
+				}
+			]
+		}
+	},
+	methods: {
+		login() {
+			uni.login({
+				provider: 'weixin',
+				success: function (loginRes) {
+					// console.log(loginRes)
+				}
+			});
+			this.isLogin = true
+			this.show = true
 		},
-		methods: {
-			
+		loginOut(){
+			this.isLogin = false
+			this.userInfo = {
+				username: '微信用户',
+				userNumber: '00000001',
+				avatar: '../../static/avatar.jpg'
+			}
+			//退出登录操作
+		},
+		close() {
+			this.show = false
+		},
+		onChooseAvatar(e) {
+			// console.log(e.detail)
+			this.userInfo.avatar = e.detail.avatar
+		},
+		blurname(e) {
+			this.userInfo.username = e.detail.value
+		},
+		submitInfo(){
+			this.show = false;
+			//todo 提交信息到服务器
 		}
 	}
+}
 </script>
 
 <style scoped>
-/* 登陆卡片相关css */
-.login-card {
-	width: 95%;
-	height: 350upx;
-	/* 金色背景 */
-	background-color: #fcdebc;
-	background-image: url("@/static/xingkong.png");
-	border-radius: 20upx;
-	margin: 0 auto;
-	box-shadow: 0 0 20upx #ccc;
-}
-
-.login-info {
-	width: 100%;
-	height: 100px;
-	margin-left: 30upx;
+.user-card {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
-	align-items: center
+	align-items: center;
+	background-color: #d6e4ef;
+	width: 95%;
+	height: 350upx;
+	margin: 0 auto;
+	border-radius: 30upx;
 }
 
-/* 头像相关css */
-.avatar-content {
-	justify-content: center;
-}
-
-.avatar {
+.user-avatar {
 	width: 150upx;
 	height: 150upx;
 	border-radius: 50%;
-	border: 5upx solid #fff;
+	margin: 30upx 30upx 30upx 50upx;
 }
 
-/* 登陆注册入口css */
-.login-tip {
-	/* 黑色字体加粗 */
-	color: #000;
-	font-weight: bold;
-	font-size: large;
-	margin-left: 20upx;
-}
-
-/* 用户个人信息概况css */
-.user-info {
-	width: 100%;
-	height: 150upx;
+.user-login {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-	align-items: center
-}
-
-.user-info-item {
-	width: 33.3%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-.user-info-item text:nth-child(1) {
-	font-size: 35upx;
-	/* font-weight: bold; */
-	color: #525035;
-	margin-bottom: 10upx;
+.user-login :first-child {
+	/* 下划线 */
+	border-bottom: #0f1215 1upx solid;
 }
 
-.user-info-item text:nth-child(2) {
-	font-size: 28upx;
-	/* font-weight: bold; */
-	color: #c0a169;
+.user-name {
+	font-size: large;
+	height: 50upx;
+	margin-bottom: 30upx;
+}
+
+.user-menu {
+	width: 95%;
+	margin: 0 auto;
+	margin-top: 40upx;
+	border-top: #d6e4ef 1upx solid;
+	border-bottom: #d6e4ef 1upx solid;
+}
+
+.menu-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 95%;
+	margin: 0 auto;
+	height: 100upx;
+	border-bottom: #d6e4ef 1upx solid;
+}
+
+/* css选择器过滤最后一个子元素 */
+.menu-item:last-child {
+	border-bottom: none;
+}
+
+.menu-item .iconfont {
+	margin-right: 20upx;
+}
+
+.popup-notice{
+	width:100%;
+	height: 80upx;
+	/* 文字垂直水平居中 */
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30upx;
+}
+.get-avatar{
+	margin-top: 60upx;
+}
+.get-name{
+	margin-bottom:0;
+}
+.get-avatar,.get-name{
+	width: 100%;
+	height: 150upx;
+	display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+	margin-left: 50upx;
+}
+.get-avatar button{
+	width: 100upx;
+	height: 100upx;
+	background-color: rgb(255, 255, 255,0);
+	border-radius: 50%;
+	padding: 0;
+	margin: 0;
+}
+.get-avatar button,.get-name input{
+	margin-left: 50upx;
+}
+.get-avatar button image{
+	width: 100%;
+	height: 100%;
+}
+
+.mini-btn{
+	margin-bottom: 60upx;
+	width: 250upx;
+}
+
+.login-out{
+	width: 300upx;
+	position: absolute;
+	bottom: 30upx;
+	background-color: #fff;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+
+.ridicule{
+	width:80%;
+	margin: 100upx auto;
+	color: red;
+	font-size: smaller;
+	/* 文字自动换行 */
+	word-wrap: break-word;
+	/* 文字垂直水平居中 */
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
 }
 </style>

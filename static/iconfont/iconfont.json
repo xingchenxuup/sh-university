@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "913697",
+      "name": "进入",
+      "font_class": "bangzhujinru",
+      "unicode": "e64e",
+      "unicode_decimal": 58958
+    },
+    {
+      "icon_id": "577336",
+      "name": "反馈",
+      "font_class": "fankui",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "2681695",
+      "name": "介绍",
+      "font_class": "jieshao",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "5022571",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "1212313",
+      "name": "我的",
+      "font_class": "wode1",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "4733458",
+      "name": "学校",
+      "font_class": "xuexiao",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "6714386",
+      "name": "健步走",
+      "font_class": "jianbuzou",
+      "unicode": "e6de",
+      "unicode_decimal": 59102
+    },
+    {
+      "icon_id": "36242491",
+      "name": "我的-copy",
+      "font_class": "wode1-select",
+      "unicode": "fcbb",
+      "unicode_decimal": 64699
+    },
+    {
+      "icon_id": "36242492",
+      "name": "学校-copy",
+      "font_class": "xuexiao-select",
+      "unicode": "fcbc",
+      "unicode_decimal": 64700
+    },
+    {
+      "icon_id": "36242493",
+      "name": "健步走-copy",
+      "font_class": "jianbuzou-select",
+      "unicode": "fcbd",
+      "unicode_decimal": 64701
+    },
+    {
       "icon_id": "682636",
       "name": "钟表",
       "font_class": "zhongbiao",
