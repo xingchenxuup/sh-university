@@ -33,13 +33,12 @@
 			<view class="get-avatar">
 				<view class="avatar-notice">获取头像</view>
 				<button open-type="chooseAvatar" @chooseavatar='onChooseAvatar' >
-					<!-- <button open-type="chooseAvatar" @chooseavatar='onChooseAvatar'> -->
 				<image :src="userInfo.avatar" mode=""></image>
 				</button>
 			</view>
 			<view class="get-name">
 				<view class="name-notice">设置昵称</view>
-				<input @blur="blurname" type="nickname" v-model="userInfo.username" placeholder="请输入昵称">
+				<input type="nickname" v-model="userInfo.username" placeholder="请输入昵称">
 			</view>
 			<button class="mini-btn" type="primary" @click="submitInfo" >提交</button>
 		</u-popup>
@@ -103,15 +102,14 @@ export default {
 			this.show = false
 		},
 		onChooseAvatar(e) {
-			// console.log(e.detail)
-			this.userInfo.avatar = e.detail.avatar
-		},
-		blurname(e) {
+			console.log(e.detail)
+			this.userInfo.avatar = e.detail.avatarUrl
 			this.userInfo.username = e.detail.value
 		},
 		submitInfo(){
 			this.show = false;
 			//todo 提交信息到服务器
+			console.log(this.userInfo)
 		}
 	}
 }
